@@ -1,6 +1,7 @@
 library dropdown_search;
 
 import 'dart:async';
+import 'dart:math';
 
 import 'package:dropdown_search/src/properties/clear_button_props.dart';
 import 'package:dropdown_search/src/properties/dropdown_button_props.dart';
@@ -243,6 +244,7 @@ class DropdownSearchState<T> extends State<DropdownSearch<T>> {
   final ValueNotifier<List<T>> _selectedItemsNotifier = ValueNotifier([]);
   final ValueNotifier<bool> _isFocused = ValueNotifier(false);
   final _popupStateKey = GlobalKey<SelectionWidgetState<T>>();
+  bool isOpened = false;
 
   @override
   void initState() {
@@ -443,7 +445,22 @@ class DropdownSearchState<T> extends State<DropdownSearch<T>> {
         .applyDefaults(Theme.of(state.context).inputDecorationTheme)
         .copyWith(
           enabled: widget.enabled,
-          suffixIcon: _manageSuffixIcons(),
+          suffixIcon: isOpened
+              ? Padding(
+                  padding: const EdgeInsets.only(right: 12.0),
+                  child: Transform.rotate(
+                      angle: 180 * pi / 180,
+                      child: Image.asset(
+                        'assets/images/arrow-down.png',
+                        color: Color(0xff3F70D4),
+                      )),
+                )
+              : Padding(
+                  padding: const EdgeInsets.only(right: 12.0),
+                  child: Image.asset('assets/images/arrow-down.png',
+                      color: Color(0xff292D32)),
+                ),
+          suffixIconConstraints: BoxConstraints(maxHeight: 20, maxWidth: 40),
           errorText: state.errorText,
         );
   }
@@ -728,6 +745,9 @@ class DropdownSearchState<T> extends State<DropdownSearch<T>> {
     }
 
     _handleFocus(true);
+    setState(() {
+      isOpened = true;
+    });
     if (widget.popupProps.mode == Mode.MENU) {
       await _openMenu();
     } else if (widget.popupProps.mode == Mode.MODAL_BOTTOM_SHEET) {
@@ -740,6 +760,9 @@ class DropdownSearchState<T> extends State<DropdownSearch<T>> {
     //dismiss either by selecting items OR clicking outside the popup
     widget.popupProps.onDismissed?.call();
     _handleFocus(false);
+    setState(() {
+      isOpened = false;
+    });
   }
 
   ///Change selected Value; this function is public USED to change the selected
