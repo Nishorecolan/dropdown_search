@@ -447,7 +447,7 @@ class DropdownSearchState<T> extends State<DropdownSearch<T>> {
           enabled: widget.enabled,
           suffixIcon: isOpened
               ? Padding(
-                  padding: const EdgeInsets.only(right: 12.0),
+                  padding: const EdgeInsets.only(right: 19.0),
                   child: Transform.rotate(
                       angle: 180 * pi / 180,
                       child: Image.asset(
@@ -456,7 +456,7 @@ class DropdownSearchState<T> extends State<DropdownSearch<T>> {
                       )),
                 )
               : Padding(
-                  padding: const EdgeInsets.only(right: 12.0),
+                  padding: const EdgeInsets.only(right: 19.0),
                   child: Image.asset('assets/images/arrow-down.png',
                       color: Color(0xff292D32)),
                 ),
