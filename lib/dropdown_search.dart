@@ -352,11 +352,18 @@ class DropdownSearchState<T> extends State<DropdownSearch<T>> {
           getSelectedItems,
         );
       else if (isMultiSelectionMode) {
-        return Wrap(
-          children: getSelectedItems
+        return  SingleChildScrollView(scrollDirection: Axis.horizontal,child: Row(
+          children:
+          getSelectedItems
               .map((e) => defaultItemMultiSelectionMode(e))
               .toList(),
-        );
+
+        ),);
+        // return Wrap(
+        //   children: getSelectedItems
+        //       .map((e) => defaultItemMultiSelectionMode(e))
+        //       .toList(),
+        // );
       }
       return Text(_selectedItemAsString(getSelectedItem),
           style: Theme.of(context).textTheme.subtitle1);
