@@ -55,10 +55,11 @@ class TextFieldProps {
   final ScrollController? scrollController;
   final Iterable<String>? autofillHints;
   final String? restorationId;
+  final double? containerHeight;
 
   const TextFieldProps({
     this.controller,
-    this.decoration = const InputDecoration(border: OutlineInputBorder()),
+    this.decoration = const InputDecoration(border: OutlineInputBorder(),contentPadding: EdgeInsets.only(bottom: 10,left: 10,top: 20)),
     this.keyboardType,
     this.textInputAction,
     this.textCapitalization = TextCapitalization.none,
@@ -86,7 +87,7 @@ class TextFieldProps {
     this.inputFormatters,
     this.enabled,
     this.cursorWidth = 2.0,
-    this.cursorHeight,
+    this.cursorHeight = 13,
     this.cursorRadius,
     this.cursorColor,
     this.selectionHeightStyle = ui.BoxHeightStyle.tight,
@@ -107,5 +108,6 @@ class TextFieldProps {
     this.clipBehavior = Clip.hardEdge,
     this.enableIMEPersonalizedLearning = true,
     this.focusNode,
+    this.containerHeight = 35
   });
 }
