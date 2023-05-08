@@ -457,7 +457,6 @@ class DropdownSearchState<T> extends State<DropdownSearch<T>> {
             child: Image.asset('assets/images/arrow-down.png',
               color: Color(0xff292D32), width: 10, height: 20,),
           ),
-          suffixIconConstraints: BoxConstraints(maxHeight: 20, maxWidth: 40),
           errorText: state.errorText,
         );
   }
