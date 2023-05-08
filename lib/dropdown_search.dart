@@ -452,21 +452,11 @@ class DropdownSearchState<T> extends State<DropdownSearch<T>> {
         .applyDefaults(Theme.of(state.context).inputDecorationTheme)
         .copyWith(
           enabled: widget.enabled,
-          suffixIcon: isOpened
-              ? Padding(
-                  padding: const EdgeInsets.only(right: 19.0),
-                  child: Transform.rotate(
-                      angle: 180 * pi / 180,
-                      child: Image.asset(
-                        'assets/images/arrow-down.png',
-                        color: Color(0xff3F70D4),
-                      )),
-                )
-              : Padding(
-                  padding: const EdgeInsets.only(right: 19.0),
-                  child: Image.asset('assets/images/arrow-down.png',
-                      color: Color(0xff292D32)),
-                ),
+          suffixIcon: Padding(
+            padding: const EdgeInsets.only(right: 19.0),
+            child: Image.asset('assets/images/arrow-down.png',
+              color: Color(0xff292D32), width: 10, height: 20,),
+          ),
           suffixIconConstraints: BoxConstraints(maxHeight: 20, maxWidth: 40),
           errorText: state.errorText,
         );
